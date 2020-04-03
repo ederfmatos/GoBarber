@@ -15,7 +15,7 @@ module.exports = {
 	},
 	rules: {
 		'class-methods-use-this': 'off',
-		'no-params-reassign': 'off',
+		'no-param-reassign': 'off',
 		camelcase: 'off',
 		'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
 		'prettier/prettier': 'error',
