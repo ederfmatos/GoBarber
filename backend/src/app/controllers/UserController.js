@@ -1,12 +1,14 @@
 import User from '../models/User';
 
+function checkUserExists(email) {
+	return User.findOne({ where: { email } });
+}
+
 class UserController {
 	async store(req, res) {
 		const { name, email, password, provider } = req.body;
 
-		const userExists = await User.findOne({ where: { email } });
-
-		if (userExists) {
+		if (await checkUserExists(email)) {
 			return res.status(400).json({ error: 'User already exists' });
 		}
 
@@ -21,7 +23,21 @@ class UserController {
 	}
 
 	async update(req, res) {
-		return res.json({ ok: req.userId });
+		const { email, oldPassword } = req.body;
+
+		const user = await User.findByPk(req.userId);
+
+		if (email !== user.email && (await checkUserExists(email))) {
+			return res.status(400).json({ error: 'User already exists' });
+		}
+
+		if (oldPassword && !(await user.checkPassword(oldPassword))) {
+			return res.status(401).json({ error: 'Password does not match' });
+		}
+
+		const { id, name, provider } = await user.update(req.body);
+
+		return res.json({ id, name, email, provider });
 	}
 }
 
