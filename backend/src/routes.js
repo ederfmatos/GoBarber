@@ -35,6 +35,12 @@ routes.get(
 	NotificationController.index,
 );
 
+routes.put(
+	'/notifications/:id',
+	providerAuthMiddleware,
+	NotificationController.update,
+);
+
 routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;
