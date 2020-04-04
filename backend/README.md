@@ -1,6 +1,6 @@
-## Backend for Application developed in Bootcamp GoStack 8.0 by Rocketseat
+# Backend for Application developed in Bootcamp GoStack 8.0 by Rocketseat
 
-# Annotations:
+## Annotations:
 
 ### Migrations
 
@@ -15,6 +15,11 @@ Revert last migration:
 
 Revert all migrations:
 `yarn sequelize db:migrate:undo:all`
+
+### Postgres
+
+Create container:
+`docker run --name <NAME> -p 5432:5432 -d -t postgres`
 
 ### MongoDB
 
