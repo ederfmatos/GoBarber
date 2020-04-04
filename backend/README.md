@@ -20,3 +20,8 @@ Revert all migrations:
 
 Create container:
 `docker run --name <NAME> -p 27017:27017 -d -t mongo`
+
+### Redis
+
+Create container:
+`docker run --name <NAME> -p 6379:6379 -d -t redis:alpine`
