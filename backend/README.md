@@ -15,3 +15,8 @@ Revert last migration:
 
 Revert all migrations:
 `yarn sequelize db:migrate:undo:all`
+
+### MongoDB
+
+Create container:
+`docker run --name <NAME> -p 27017:27017 -d -t mongo`
