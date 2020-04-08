@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 * {
     margin: 0;
@@ -9,9 +10,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body,#root {
+    height: 100%;
+  }
+
   body {
-    font: 400 14px Roboto, sans-serif;
-    background: #f0f0f0;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -19,11 +22,20 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  body,
   input,
   button,
   textarea,
   a {
-    font: 400 18px Roboto, sans-serif;
+    font: 14px Roboto, sans-serif;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
   }
 
 `;
