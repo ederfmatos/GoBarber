@@ -26,6 +26,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-undef': 'off',
+    'no-console': 'off',
+    camelcase: 'off',
   },
   settings: {
     'import/resolver': {

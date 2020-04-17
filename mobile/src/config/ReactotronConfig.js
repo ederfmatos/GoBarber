@@ -1,11 +1,13 @@
 import Reactotron from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
 import reactotronSaga from 'reactotron-redux-saga';
+import { NativeModules } from 'react-native';
+
+// grabs the ip address
+const host = NativeModules.SourceCode.scriptURL.split('://')[1].split(':')[0];
 
 if (process.env.NODE_ENV === 'development') {
-  const tron = Reactotron.configure({
-    configure: '192.168.0.110',
-  })
+  const tron = Reactotron.configure({ host })
     .useReactNative()
     .use(reactotronRedux())
     .use(reactotronSaga())
