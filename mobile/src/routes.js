@@ -38,7 +38,7 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 
-import { SignIn, SignUp, Dashboard } from './pages';
+import { SignIn, SignUp, Dashboard, Profile } from './pages';
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -48,9 +48,22 @@ export default (isSigned = false) =>
           SignIn,
           SignUp,
         }),
-        App: createBottomTabNavigator({
-          Dashboard,
-        }),
+        App: createBottomTabNavigator(
+          {
+            Dashboard,
+            Profile,
+          },
+          {
+            tabBarOptions: {
+              keyboardHidesTabBar: true,
+              activeTintColor: '#fff',
+              inactiveTintColor: '#ffffff77',
+              style: {
+                backgroundColor: '#8d41a8',
+              },
+            },
+          },
+        ),
       },
       {
         initialRouteName: isSigned ? 'App' : 'Sign',
