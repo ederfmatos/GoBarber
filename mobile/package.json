@@ -1,6 +1,6 @@
 {
-  "name": "mobile",
-  "version": "0.0.1",
+  "name": "go-barber-mobile",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -14,7 +14,6 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/masked-view": "^0.1.9",
-    "@react-navigation/bottom-tabs": "^5.2.6",
     "axios": "^0.19.2",
     "immer": "^6.0.3",
     "prop-types": "^15.7.2",
@@ -26,8 +25,7 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
     "react-native-vector-icons": "^6.6.0",
-    "react-navigation": "^4.3.7",
-    "react-navigation-stack": "^2.3.11",
+    "react-navigation": "^3.11.0",
     "react-redux": "^7.2.0",
     "reactotron-react-native": "^5.0.0",
     "reactotron-redux": "^3.1.3",
