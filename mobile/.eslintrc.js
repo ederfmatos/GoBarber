@@ -28,6 +28,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-undef': 'off',
     'no-console': 'off',
+    'no-param-reassign': 'off',
     camelcase: 'off',
   },
   settings: {

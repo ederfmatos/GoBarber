@@ -21,6 +21,7 @@ export function* signIn({ payload }) {
         'Erro no login',
         'O usuário não pode ser um prestador de serviço',
       );
+      yield put(signFailure());
       return;
     }
 
@@ -44,7 +45,6 @@ export function* signUp({ payload }) {
       name,
       email,
       password,
-      provider: true,
     });
     // history.push('/');
   } catch (e) {
@@ -56,7 +56,7 @@ export function* signUp({ payload }) {
   }
 }
 
-export function setToken({ payload }) {
+export function setToken({ payload } = {}) {
   if (!payload) return;
 
   const { token } = payload.auth;
