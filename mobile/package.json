@@ -6,11 +6,14 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "restart": "react-native run-android && react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "jetify"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.9",
+    "@react-navigation/bottom-tabs": "^5.2.6",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",
