@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-// import { Container } from './styles';
 import { Background } from '~/components';
+// import { Container } from './styles';
 
 export default function Profile() {
   return <Background />;
