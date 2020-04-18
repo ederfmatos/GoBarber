@@ -1,15 +1,21 @@
-import React from 'react';
-import { Background, BackTitleButton } from '~/components';
+import React, { useState } from 'react';
+import { Background, BackTitleButton, DateInput } from '~/components';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 export default function SelectDateTime() {
-  return <Background />;
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <Background>
+      <Container>
+        <DateInput date={date} onChange={setDate} />
+      </Container>
+    </Background>
+  );
 }
 
 SelectDateTime.navigationOptions = ({ navigation }) => ({
   title: 'Selecione o horário',
-  headerLeft: () => (
-    <BackTitleButton onPress={() => navigation.navigate('Provider')} />
-  ),
+  headerLeft: () => <BackTitleButton onPress={() => navigation.goBack()} />,
 });
