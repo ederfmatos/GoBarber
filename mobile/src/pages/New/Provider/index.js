@@ -1,19 +1,58 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Background } from '~/components';
+import React, { useEffect, useState } from 'react';
+import { Background, BackTitleButton } from '~/components';
 
-// import { Container } from './styles';
+import {
+  Container,
+  ProvidersList,
+  Avatar,
+  Name,
+  ProviderContainer,
+} from './styles';
+import api from '~/services/api';
 
-export default function Provider() {
-  return <Background />;
+export default function Provider({ navigation }) {
+  const [providers, setProviders] = useState([]);
+
+  useEffect(() => {
+    async function loadProviders() {
+      const response = await api.get('providers');
+      setProviders(response.data);
+    }
+
+    loadProviders();
+  }, []);
+
+  return (
+    <Background>
+      <Container>
+        <ProvidersList
+          data={providers}
+          keyExtractor={provider => provider.id}
+          renderItem={({ item: provider }) => (
+            <ProviderContainer
+              onPress={() =>
+                navigation.navigate('SelectDateTime', { provider })
+              }
+            >
+              <Avatar
+                source={{
+                  uri: provider.avatar
+                    ? provider.avatar.url
+                    : `https://api.adorable.io/avatar/50/${provider.name}.png`,
+                }}
+              />
+              <Name>{provider.name}</Name>
+            </ProviderContainer>
+          )}
+        />
+      </Container>
+    </Background>
+  );
 }
 
 Provider.navigationOptions = ({ navigation }) => ({
   title: 'Selecione o prestador',
   headerLeft: () => (
-    <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
-      <Icon name="chevron-left" size={20} color="#FFF" />
-    </TouchableOpacity>
+    <BackTitleButton onPress={() => navigation.navigate('Dashboard')} />
   ),
 });
