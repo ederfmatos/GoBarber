@@ -1,22 +1,24 @@
 import React, { useEffect, useState, useCallback } from 'react';
-
+import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
 import { Background, Appointment } from '~/components';
 import { Container, Title, List } from './styles';
 
-export default function Dashboard() {
+function Dashboard(isFocused) {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
+    if (!isFocused) return;
+
     async function loadAppointments() {
       const response = await api.get('/appointments');
       setAppointments(response.data);
     }
 
     loadAppointments();
-  }, []);
+  }, [isFocused]);
 
   const handleCancel = useCallback(async id => {
     const response = await api.delete(`/appointments/${id}`);
@@ -59,3 +61,5 @@ Dashboard.navigationOptions = {
     <Icon name="event" size={20} color={tintColor} />
   ),
 };
+
+export default withNavigationFocus(Dashboard);
