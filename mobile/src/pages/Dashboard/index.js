@@ -6,7 +6,7 @@ import api from '~/services/api';
 import { Background, Appointment } from '~/components';
 import { Container, Title, List } from './styles';
 
-function Dashboard(isFocused) {
+function Dashboard({ isFocused }) {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
@@ -20,28 +20,33 @@ function Dashboard(isFocused) {
     loadAppointments();
   }, [isFocused]);
 
-  const handleCancel = useCallback(async id => {
-    const response = await api.delete(`/appointments/${id}`);
+  const handleCancel = useCallback(
+    async id => {
+      const response = await api.delete(`/appointments/${id}`);
 
-    setAppointments(
-      appointments.map(appointment =>
-        appointment.id === id
-          ? {
-              ...appointment,
-              canceled_at: response.data.canceled_at,
-              cancelable: false,
-            }
-          : appointment,
-      ),
-    );
-  }, []);
+      setAppointments(
+        appointments.map(appointment =>
+          appointment.id === id
+            ? {
+                ...appointment,
+                canceled_at: response.data.canceled_at,
+                cancelable: false,
+              }
+            : appointment,
+        ),
+      );
+    },
+    [appointments],
+  );
 
   return (
     <Background>
       <Container>
         <Title>Agendamentos</Title>
         <List
-          data={appointments}
+          data={appointments.filter(
+            appointment => appointment.cancelable || appointment.past,
+          )}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <Appointment
