@@ -8,11 +8,5 @@ export default function App() {
 
   const Routes = createRoutes(signed);
 
-  // if (signed) {
-  //   Routes = createUnsignedRoutes();
-  // } else {
-  //   Routes = createSignedRoutes();
-  // }
-
   return <Routes />;
 }
