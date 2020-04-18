@@ -8,7 +8,7 @@ export default function SelectDateTime({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
 
-  const provider = useMemo(() => navigation.getParam('provider'), []);
+  const provider = useMemo(() => navigation.getParam('provider'), [navigation]);
 
   useEffect(() => {
     async function loadAvailable() {
