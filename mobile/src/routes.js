@@ -32,13 +32,26 @@
 //     </NavigationContainer>
 //   );
 // };
+
+import React from 'react';
 import {
   createAppContainer,
   createSwitchNavigator,
   createBottomTabNavigator,
+  createStackNavigator,
 } from 'react-navigation';
 
-import { SignIn, SignUp, Dashboard, Profile } from './pages';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import {
+  SignIn,
+  SignUp,
+  Dashboard,
+  Profile,
+  SelectDateTime,
+  Confirm,
+  Provider,
+} from './pages';
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -51,6 +64,33 @@ export default (isSigned = false) =>
         App: createBottomTabNavigator(
           {
             Dashboard,
+            New: {
+              screen: createStackNavigator(
+                {
+                  Provider: { screen: Provider },
+                  SelectDateTime: { screen: SelectDateTime },
+                  Confirm: { screen: Confirm },
+                },
+                {
+                  initialRouteName: 'Provider',
+                  defaultNavigationOptions: {
+                    headerTitleAlign: 'center',
+                    headerTransparent: true,
+                    headerTintColor: '#fff',
+                    headerLeftContainerStyle: {
+                      marginLeft: 20,
+                    },
+                  },
+                },
+              ),
+              navigationOptions: {
+                tabBarLabel: 'Agendar',
+                tabBarVisible: false,
+                tabBarIcon: () => (
+                  <Icon name="add-circle-outline" size={20} color="#fffffd66" />
+                ),
+              },
+            },
             Profile,
           },
           {
